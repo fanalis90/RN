@@ -1,0 +1,49 @@
+[{
+        "tgl": "Senin, 6 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "waiting"
+    },
+    {
+        "tgl": "Senin, 5 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "denied"
+    },
+    {
+        "tgl": "Senin, 4 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    },
+    {
+        "tgl": "Senin, 3 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    },
+    {
+        "tgl": "Senin, 2 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    },
+    {
+        "tgl": "Senin, 1 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    },
+    {
+        "tgl": "Senin, 1 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    },
+    {
+        "tgl": "Senin, 1 Januari 2019",
+        "jenisAbsen": "Absen Masuk",
+        "jam": "7.30",
+        "status": "approve"
+    }
+]

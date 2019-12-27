@@ -19,43 +19,11 @@ class HomeScreen extends React.Component {
           </View>
         </View>
 
-        <View style={styles.button1Row}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("HistoriIzin")}
-            style={styles.button1}
-          >
-            <View style={styles.rect3}>
-              <Image
-                source={require("../assets/images/history.png")}
-                resizeMode="contain"
-                style={styles.iconHistori}
-              ></Image>
-              <Text style={styles.histori}>Histori</Text>
-            </View>
-          </TouchableOpacity>
-
-          <View style={styles.button1Filler}></View>
-          <View style={styles.menuPersetujuan1}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("CekIzin")}
-              style={styles.button1}
-            >
-              <View style={styles.rect4}>
-                <Image
-                  source={require("../assets/images/check.png")}
-                  resizeMode="contain"
-                  style={styles.iconPersetujuan}
-                ></Image>
-                <Text style={styles.persetujuan}>Persetujuan</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
 
         <View style={styles.button3Row}>
 
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Coba")}
+            onPress={() => this.props.navigation.navigate("Absen")}
             style={styles.button3}
           >
             <View style={styles.rectFiller}></View>
@@ -87,6 +55,38 @@ class HomeScreen extends React.Component {
             </View>
           </TouchableOpacity>
 
+        </View>
+        <View style={styles.button1Row}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Izin")}
+            style={styles.button1}
+          >
+            <View style={styles.rect3}>
+              <Image
+                source={require("../assets/images/history.png")}
+                resizeMode="contain"
+                style={styles.iconHistori}
+              ></Image>
+              <Text style={styles.histori}>Histori</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View style={styles.button1Filler}></View>
+          <View style={styles.menuPersetujuan1}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("CekIzin")}
+              style={styles.button1}
+            >
+              <View style={styles.rect4}>
+                <Image
+                  source={require("../assets/images/check.png")}
+                  resizeMode="contain"
+                  style={styles.iconPersetujuan}
+                ></Image>
+                <Text style={styles.persetujuan}>Persetujuan</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
 
       </View>
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
     color: "#c0c0c0",
     fontSize: 16,
     fontFamily: "roboto-regular",
-    marginTop: 17,
-    marginLeft: 30
+    marginTop: 50,
+    marginLeft: 30,
   },
   button1: {
     width: 146,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     textAlign: "center",
     marginTop: 13,
-    marginLeft: 55
+    marginLeft: 1
   },
   button1Filler: {
     flex: 1,
@@ -184,12 +184,12 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     textAlign: "center",
     marginTop: 14,
-    marginLeft: 41
+    marginLeft: 1
   },
   button1Row: {
     height: 146,
     flexDirection: "row",
-    marginTop: 178,
+    marginTop: 10,
     marginLeft: 30,
     marginRight: 30
   },
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     textAlign: "center",
     marginBottom: 21,
-    marginLeft: 56
+    marginLeft: 1
   },
   button3Filler: {
     flex: 1,
@@ -250,20 +250,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buatSuratIzin: {
-    color: "rgba(54,54,54,1)",
+    color: "#000000",
     fontSize: 12,
     fontFamily: "roboto-regular",
     textAlign: "center",
-    height: 12,
-    width: 79,
-    alignSelf: "flex-end",
-    marginBottom: 22,
-    marginRight: 34
+    marginBottom: 21,
+    marginLeft: 1
   },
   button3Row: {
     height: 146,
     flexDirection: "row",
-    marginTop: -316,
+    marginTop: -30,
     marginLeft: 30,
     marginRight: 30
   }

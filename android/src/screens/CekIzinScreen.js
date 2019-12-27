@@ -20,7 +20,7 @@ class CekIzin extends React.Component {
             onPress={this._showModal}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View style={{ flex: 3, paddingTop: 3 }}>
-                <Text style={{ paddingHorizontal: '5%', fontSize: 18, fontFamily: "roboto-700", }} numberOfLines={1}>Nama Pegawai</Text>
+                <Text style={{ paddingHorizontal: '5%', fontSize: 18, fontFamily: "roboto-700", }} numberOfLines={1}>Ahmad Mu'allal Hifni</Text>
                 <Text style={{ paddingHorizontal: '5%', fontSize: 14, fontFamily: "roboto-700", }} numberOfLines={1}>Senin, 9 Desember 2019 - 17:50</Text>
                 <View style={styles.izin}>
                   <Text>Izin Sakit</Text>
@@ -81,15 +81,17 @@ class CekIzin extends React.Component {
                 </View>
               </View>
               <View>
-                <Text style={{ fontWeight: 'bold' }}>Lampiran</Text>
+                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>Lampiran</Text>
                 <View style={{}}>
-                  <View style={styles.viewLampiran}>
-                    <Text>view</Text>
+                  <View style={{ width: 300, height: 35, borderWidth: 1, borderColor: 'orange', borderRadius: 10 }}>
+                    <TouchableOpacity style={{ marginRight: 10, marginTop: 4, marginLeft: 230 }}>
+                      <Text style={styles.viewLampiran}>view</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
 
               </View>
-              <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 }}>
+              <View style={{ flex: 1, flexDirection: 'row', paddingTop: 50 }}>
                 <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={this._hideModal}>
                   <View style={styles.deny}>
                     <Text>Deny</Text>
@@ -106,7 +108,7 @@ class CekIzin extends React.Component {
           </Modal>
         </View>
 
-      </View>
+      </View >
     )
   }
 }
@@ -172,14 +174,16 @@ const styles = StyleSheet.create({
 
   },
   viewLampiran: {
-    fontSize: 13,
-    width: 60,
-    height: 30,
-    borderRadius: 10,
-    padding: 5,
+    fontSize: 15,
     alignItems: 'center',
+    fontFamily: 'robot-regular',
+    width: 60,
+    height: 25,
+    borderRadius: 10,
+    paddingVertical: 2,
+    paddingTop: 2,
+    paddingLeft: 15,
     backgroundColor: "#FFAD2F",
-    marginTop: '2%',
   },
   deny: {
     fontSize: 13,

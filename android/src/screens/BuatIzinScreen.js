@@ -7,13 +7,84 @@ import {
   TextInput,
   StatusBar
 } from "react-native";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import ImagePicker from 'react-native-image-picker';
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from 'react-native-vector-icons';
 
+const options = {
+  title: 'pick file',
+  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+  storageOptions: {
+    skipBackup: true,
+    path: 'absen',
+  },
+  maxWidth: 800,
+  maxHeight: 600,
+};
+
 
 class BuatIzinScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Buat Surat Izin',
+      headerTintColor: 'black',
+    };
+  };
+
+
+  state = {
+    pickedImage: null,
+    source: null,
+    date: new Date('2020-06-12T14:42:42'),
+    mode: 'date',
+    show: false,
+  }
+
+  pickImageHandler = () => {
+    ImagePicker.launchImageLibrary(options, (res) => {
+      console.log('Response = ', res);
+      if (res.didCancel) {
+        console.log("User cancelled!");
+      } else if (res.error) {
+        console.log("Error", res.error);
+      } else {
+        const pickedImage = { uri: res.uri };
+        this.setState({
+          avatarSource: pickedImage,
+
+        });
+
+      }
+    });
+  }
+
+
+  setDate = (event, date) => {
+    date = date || this.state.date;
+
+    this.setState({
+      show: Platform.OS === 'ios' ? true : false,
+      date,
+    });
+  }
+
+  show = mode => {
+    this.setState({
+      show: true,
+      mode,
+    });
+  }
+
+  datepicker = () => {
+    this.show('date');
+  }
+
+
+
   render() {
+    const { show, date, mode } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.boxInputanKepada}>
@@ -60,7 +131,7 @@ class BuatIzinScreen extends React.Component {
 
 
         <View style={styles.tanggalMulaiRow}>
-          <TouchableOpacity style={styles.tanggalMulai}>
+          <TouchableOpacity style={styles.tanggalMulai} onPress={this.datepicker}>
             <View style={styles.rect4}>
               <MaterialCommunityIconsIcon
                 name="calendar-multiselect"
@@ -68,7 +139,14 @@ class BuatIzinScreen extends React.Component {
               ></MaterialCommunityIconsIcon>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tanggalSelesai}>
+
+          {show && <DateTimePicker value={date}
+            mode={mode}
+            is24Hour={true}
+            display="default"
+            onChange={this.setDate} />
+          }
+          <TouchableOpacity style={styles.tanggalSelesai} onPress={this.datepicker}>
             <View style={styles.rect6}>
               <MaterialCommunityIconsIcon
                 name="calendar-multiselect"
@@ -87,7 +165,7 @@ class BuatIzinScreen extends React.Component {
           <Text style={styles.labelSuratKeteranganDokter}>
             Surat Keterangan Dokter
         </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.pickImageHandler}>
             <View style={styles.attachmentIconStack}>
               <View style={styles.rect5}></View>
               <MaterialCommunityIconsIcon

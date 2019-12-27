@@ -1,0 +1,43 @@
+[{
+        "tgl": "Senin, 1 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "sedang tidak enak badan",
+        "status": "waiting"
+    },
+    {
+        "tgl": "Selasa, 2 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "denied"
+    },
+    {
+        "tgl": "Rabu, 3 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "approve"
+    },
+    {
+        "tgl": "kamis, 4 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "waiting"
+    },
+    {
+        "tgl": "Jumat, 5 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "approve"
+    },
+    {
+        "tgl": "Sabtu, 6 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "approve"
+    },
+    {
+        "tgl": "Minggu, 7 Januari 2019",
+        "jenisIzin": "Izin Sakit",
+        "keterangan": "lagi flu",
+        "status": "approve"
+    }
+]

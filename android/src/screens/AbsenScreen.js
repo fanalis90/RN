@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { StyleSheet, View, TouchableOpacity, Text, Image, ToastAndroid } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text, Image, Button } from "react-native";
 import ImagePicker from 'react-native-image-picker';
+import geolocation from 'react-native-geolocation-service';
 
 const options = {
-  title: 'Select Avatar',
+  title: 'pick kamera',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
   storageOptions: {
     skipBackup: true,
@@ -14,17 +15,19 @@ const options = {
 
 
 class AbsenScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'Absen',
-      headerTintColor: 'black',
-    };
-  };
-
 
   state = {
     pickedImage: null,
     source: null,
+    // location: null,
+    latitude: null,
+    longitude: null,
+    region: {
+      latitude: -7.784794,
+      longitude: 110.394241,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    },
   }
 
   reset = () => {
@@ -37,6 +40,27 @@ class AbsenScreen extends React.Component {
  * The first arg is the options object for customization (it can also be null or omitted for default options),
  * The second arg is the callback which sends object: response (more info below in README)
  */
+
+  findCoordinates = () => {
+    geolocation.getCurrentPosition(
+      position => {
+        // const location = position;
+        const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
+
+        this.setState({
+          longitude, latitude, region: {
+            latitude: position.coords.longitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+        });
+      },
+      error => alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
 
   pickImageHandler = () => {
     ImagePicker.launchCamera(options, (res) => {
@@ -69,12 +93,8 @@ class AbsenScreen extends React.Component {
     alert('taro fungsi Submit disini')
   }
 
-
-
-
-
   render() {
-    const { photo, show } = this.state;
+
     return (
       <View style={styles.container}>
         <View style={styles.subContainerAtas}>
@@ -82,18 +102,27 @@ class AbsenScreen extends React.Component {
 
           {/* <Image source={this.state.avatarSource} style={styles.iniDigantiKomponenMap} /> */}
 
-          <MapView
-            style={styles.iniDigantiKomponenMap}
-            provider={PROVIDER_GOOGLE}
-            initialRegion={{
-              latitude: -7.784794,
-              longitude: 110.394241,
-              latitudeDelta: 0.00922,
-              longitudeDelta: 0.00421,
-            }}
-          />
+          <View>
+            <MapView
+              style={styles.iniDigantiKomponenMap}
+              provider={PROVIDER_GOOGLE}
+              initialRegion={this.state.region}
+              showsMyLocationButton
+              showsUserLocation={true}
+              animateToRegion={{
+                region: {
+                  latitude: -12.784794,
+                  longitude: 110.394241,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }, duration: 500
+              }}
 
+            />
 
+          </View>
+          {/* <Text>{this.state.latitude}</Text>
+          <Text>{this.state.latitude}</Text> */}
 
         </View>
         <View style={styles.subContainerBawah}>
@@ -155,6 +184,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     borderRadius: 10,
+
+
     // backgroundColor: 'gray'
   }
 });

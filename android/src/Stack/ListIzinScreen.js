@@ -1,33 +1,49 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, FlatList } from "react-native";
+import data from '../json/listIzin.json';
 
-function ListIzinScreen(props) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.groupBoxTiapAbsen}>
-        <View style={styles.boxTiapAbsen}>
-          <View style={styles.waktuAbsenStack}>
-            <Text style={styles.waktuAbsen}></Text>
-            <Text style={styles.tanggalAbsen}>
-              Senin, 9 Desember 2019 - 17:50
+export default class ListIzinScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      izin: data,
+    };
+  }
+  render() {
+    return (
+      //<View style={styles.container}>
+      <FlatList
+        style={styles.container}
+        keyExtractor={(item, index) => `${index}`}
+        extraData={this.state}
+        data={this.state.izin}
+        renderItem={({ item }) =>
+          <View style={styles.groupBoxTiapAbsen}>
+            <View style={styles.boxTiapAbsen}>
+              <View style={styles.waktuAbsenStack}>
+                <Text style={styles.waktuAbsen}></Text>
+                <Text style={styles.tanggalAbsen}>
+                  {item.tgl}
                 </Text>
-          </View>
-          <View style={styles.jenisAbsenRow}>
-            <Text style={styles.jenisAbsen}>Izin Sakit</Text>
-            <View style={styles.labelStatusIzin}>
-              <View style={styles.boxStatusIzin}>
-                <Text style={styles.statusIzin}>waiting</Text>
               </View>
+              <View style={styles.jenisAbsenRow}>
+                <Text style={styles.jenisAbsen}>{item.jenisIzin}</Text>
+                <View style={styles.labelStatusIzin}>
+                  <View style={item.status == "waiting" ? styles.boxStatusIzin1 : item.status == "approve" ? styles.boxStatusIzin2 : styles.boxStatusIzin3}>
+                    <Text style={styles.statusIzin}>{item.status}</Text>
+                  </View>
+                </View>
+              </View>
+              <Text style={styles.keteranganIzin}>{item.keterangan}</Text>
             </View>
           </View>
-          <Text style={styles.keteranganIzin}>
-            keterangan, kenapa kamu izin...
-              </Text>
-        </View>
-      </View>
+        }
+      />
 
-    </View>
-  );
+
+      //   </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -48,11 +64,11 @@ const styles = StyleSheet.create({
   groupBoxTiapAbsen: {
     width: 315,
     height: 75,
-    marginTop: 29,
-    marginLeft: 30
+    marginTop: 15,
+    marginHorizontal: '6%'
   },
   boxTiapAbsen: {
-    width: 315,
+    width: '100%',
     height: 75,
     backgroundColor: "rgba(255,255,255,1)",
     elevation: 60,
@@ -98,18 +114,30 @@ const styles = StyleSheet.create({
     height: 25,
     marginLeft: 153
   },
-  boxStatusIzin: {
+  boxStatusIzin1: {
     width: 67,
     height: 25,
     backgroundColor: "rgba(255,207,60,1)",
-    borderRadius: 100
+    borderRadius: 100,
+  },
+  boxStatusIzin2: {
+    width: 67,
+    height: 25,
+    backgroundColor: "limegreen",
+    borderRadius: 100,
+  },
+  boxStatusIzin3: {
+    width: 67,
+    height: 25,
+    backgroundColor: "red",
+    borderRadius: 100,
   },
   statusIzin: {
     color: "rgba(255,255,255,1)",
     fontSize: 14,
     fontFamily: "roboto-regular",
-    marginTop: 3,
-    marginLeft: 10
+    paddingTop: 2,
+    alignSelf: 'center'
   },
   jenisAbsenRow: {
     height: 25,
@@ -144,5 +172,3 @@ const styles = StyleSheet.create({
     marginTop: 68
   }
 });
-
-export default ListIzinScreen;
